@@ -51,6 +51,7 @@ gc.collect()
 era_nc =glob.glob(os.path.join("home", "dump","adaptor*a0.nc"))[0]
 # ERA = [xr.open_dataset(i).rename({'longitude' : 'lon', 'latitude' : 'lat'}) for i in ls]
 era = xr.open_dataset(era_nc).rename({'longitude' : 'lon', 'latitude' : 'lat'})
-ERA_rgd = regrid_all([era])
+era = regrid_all([era.t2m.sel(experv=1)])
+yk = b.sel(lat=62,lon=-114)-273.15
 
 # era2=era.sel(time=slice("1979-01-01",'2019-12-31'))
